@@ -11,11 +11,23 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+      wx.showToast({
+          title:"hahaha",
+          icon: 'loading',
+          duration: 2000,
+          complete:()=>{
+
+          }
+      })
+
+      wx.navigateTo({
+          url: '../logs/logs'
+      })
+
   },
   onLoad: function () {
+      wx.reportMonitor('index', 1)
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,7 +55,7 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
+  getUserInfoCb: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
